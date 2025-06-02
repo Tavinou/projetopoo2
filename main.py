@@ -5,12 +5,14 @@ while rodando:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             rodando = False
-    ba.desenhar()
+    for t in listabarras:
+        t.desenhar()
     #pygame.draw.circle(tela, (255, 0, 0), (400, 300), 90,2)
     #chama todos os metodos das bolas
     for b in listabolas: # percore a lista de bolas
-        b.mover() #chama metedo mover
-        b.colidir_barra(ba) #verifica se colidiu na barra
+        b.mover()
+        for t in listabarras:
+            b.colidir_barra(t)#chama metedo mover #verifica se colidiu na barra
         b.desenhar() #ndesenha
         
         for i in listabolas: #percore dnv

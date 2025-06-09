@@ -22,11 +22,13 @@ def ccw(A, B, C): #calcular sentido
 def segmentos_cruzam(A, B, C, D): #verificar se se cruzam/se tocam
     return ccw(A, C, D) != ccw(B, C, D) and ccw(A, B, C) != ccw(A, B, D)
 while cont<barras:
-    x1, y1 = randint(0, 800), randint(0, 600)
-    x2, y2 = randint(0, 800), randint(0, 600)
+    x1, y1 = randint(0, 800), randint(0, 1100)
+    x2, y2 = randint(0, 800), randint(0, 1100)
     nova_barra = (x1, y1), (x2, y2)
-
+    d = ((x2 -x1)**2) +((y2-y1))**2
     cruzam = False
+    if d<100:
+        cruzam = True
     for barra in listabarras:
         if segmentos_cruzam(nova_barra[0], nova_barra[1], barra.x1y1, barra.x2y2):
             cruzam = True
@@ -35,4 +37,6 @@ while cont<barras:
     if not cruzam:
         listabarras.append(Barra(tela, (0, 0, 0), nova_barra[0], nova_barra[1], 10))
         cont += 1
+
+
 rodando = True

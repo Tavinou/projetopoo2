@@ -7,7 +7,6 @@ while rodando:
             rodando = False
     for t in listabarras:
         t.desenhar()
-    #pygame.draw.circle(tela, (255, 0, 0), (400, 300), 90,2)
     #chama todos os metodos das bolas
     for b in listabolas: # percore a lista de bolas
         b.mover()
@@ -20,7 +19,13 @@ while rodando:
                 None
             else: # diferente passa o objeto para verificar a colisao
                  b.verifica_colisao(i)
-
+    for i in listabarras:
+        i.mover()
+    for p in listabolas:
+        if (p.y + p.raio)>=600:
+          p.y = 600 - p.raio
+          for barra in listabarras:
+              barra.mover()
     pygame.display.flip()  
     clock.tick(60)  
 

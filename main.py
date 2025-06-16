@@ -1,5 +1,7 @@
 from config import *
+from salvar import salvar
 pygame.init()
+frames = 0
 while rodando:
     tela.fill((255, 255,255))   
     for evento in pygame.event.get():
@@ -26,7 +28,22 @@ while rodando:
           p.y = 600 - p.raio
           for barra in listabarras:
               barra.mover()
+    for i in listabolas:
+        matarbola(i)
+    for i in listabarras:
+        movebarra(i)
+    frames += 1
+    segundos = frames // 60
+    print(segundos)
+    if segundos==15:
+        frames=0
+        gerabolas()
+    if len(listabolas) ==0:
+        rodando = False
     pygame.display.flip()  
-    clock.tick(60)  
-
+    clock.tick(60)
 pygame.quit()
+fim = pygame.time.get_ticks()
+fim = fim/1000
+salvar(listabarras,bola,fim) 
+

@@ -1,9 +1,10 @@
-def salvar(barras,qntbolas,tempo):
+from config import *
+def salvar(listabarra,qntbolas,tempo):
+    print("aa")
     with open ('simulacaos.txt', "a") as f:
-        f.write('execucao')
-        for i in barras:
-            f.write(str(i) + " | ")
-        f.write(str(f"\nquantidade de bolas:{qntbolas}\n"))
-        f.write(str(f"tempo de execucao:{tempo}\n"))
+        f.write(str(f"\n{tempo};{qntbolas};"))
+        for i in listabarra:
+            f.write(str(i))
+        
 
             

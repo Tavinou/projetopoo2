@@ -13,3 +13,5 @@ class Barra:
     def mover(self):
         self.x1y1[1] -= self.velocidade
         self.x2y2[1] -= self.velocidade
+    def __str__(self):
+        return f"{self.cor};{self.x1y1};{self.x2y2};{self.grosura}"

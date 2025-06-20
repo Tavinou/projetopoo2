@@ -43,11 +43,6 @@ def gerabolas():
 gerabolas()
 listabarras = []
 cont = 0
-def ccw(A, B, C): #calcular sentido
-    return (C[1]-A[1]) * (B[0]-A[0]) > (B[1]-A[1]) * (C[0]-A[0])
-
-def segmentos_cruzam(A, B, C, D): #verificar se se cruzam/se tocam
-    return ccw(A, C, D) != ccw(B, C, D) and ccw(A, B, C) != ccw(A, B, D)
 while cont<barras:
     x1, y1 = randint(0, 800), randint(0, 1100)
     x2, y2 = randint(0, 800), randint(0, 1100)

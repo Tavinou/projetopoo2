@@ -1,5 +1,6 @@
 from config import *
 from salvar import salvar
+import time
 pygame.init()
 frames = 0
 framos = 0
@@ -8,8 +9,11 @@ while rodando:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             rodando = False
-    for t in listabarras:
-        t.desenhar()
+    for i in listabolas:
+        matarbola(i)
+    if len(listabolas) ==0:
+        time.sleep(5)
+        rodando = False
     #chama todos os metodos das bolas
     for b in listabolas: # percore a lista de bolas
         b.mover()
@@ -24,27 +28,25 @@ while rodando:
                  b.verifica_colisao(i)
     for i in listabarras:
         i.mover()
+        i.desenhar()
+        reset(i)
     for p in listabolas:
         if (p.y + p.raio)>=600:
           p.y = 600 - p.raio
           for barra in listabarras:
               barra.mover()
-    for i in listabolas:
-        matarbola(i)
-    for i in listabarras:
-        movebarra(i)
+    
     frames += 1
     framos +=1 
     segundos = frames // 60
     print(segundos)
-    if segundos==15:
+    """if segundos==15:
         frames=0
-        gerabolas()
-    if len(listabolas) ==0:
-        rodando = False
+        gerabolas()"""
+    
     pygame.display.flip()  
     clock.tick(60)
 pygame.quit()
-fim = framos//1000
+fim = framos//60
 salvar(listabarras,bola,fim) 
 

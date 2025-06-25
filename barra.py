@@ -7,7 +7,7 @@ class Barra:
         self.grosura = grosura
         self.tela = tela
         self.velocidade = 1
-        
+
     def desenhar(self):
         pygame.draw.line(self.tela,self.cor,self.x1y1,self.x2y2,self.grosura)
     def mover(self):

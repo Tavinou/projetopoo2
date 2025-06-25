@@ -1,9 +1,5 @@
 # projetopoo2
 projeto de programacao orientada a objeto 
-objetivo simular uma bola no meio de varios circulo ocos
-girando com um espaco aberto
-e toda vez que essa bolinha passar por esse espaco aquele
-circulo some e indo para proximo
-
-coisas a se pensar o raio do circulo vai dimuniando
-a bolinha ter um rastro
+objetivo simular uma descida de bola com barras incluidas e ver qual a vencedora;
+da para mudar qnt de bolas e barras,dps de cade simulacao e gravado em um txt as barras tempo e qnt de bolas iniciais
+colisao e gerecao das barras e bolas foi feito com auxiolio do GPT-4

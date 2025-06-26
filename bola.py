@@ -32,7 +32,7 @@ class Bola:
 
         if self.y + self.raio > 600: # n dx passar dio chao
             self.y = 600 - self.raio
-            self.velocidade_y *= -0.6
+            self.velocidade_y *= -0
         if abs(self.velocidade_x) < 0.1: #zera velcoidade evitar flik
             self.velocidade_x = 0
         if abs(self.velocidade_y) < 0.1: #zera velcoidade evitar flik
@@ -99,4 +99,17 @@ class Bola:
             
 
     def desenhar(self):
-        pygame.draw.circle(self.tela, self.cor, (int(self.x), int(self.y)), self.raio)
+        # Cria surface transparente para o glow
+        tamanho_surface = self.raio * 4
+        glow_surface = pygame.Surface((tamanho_surface, tamanho_surface), pygame.SRCALPHA)
+        
+        centro = self.raio * 2, self.raio * 2
+
+        # Desenha o brilho ao redor (transparente)
+        pygame.draw.circle(glow_surface, (*self.cor, 50), centro, self.raio + 5.5)
+
+        # Desenha a bola no centro
+        pygame.draw.circle(glow_surface, (*self.cor, 255), centro, self.raio)
+
+        # Blita a surface na tela principal, ajustando posição
+        self.tela.blit(glow_surface, (self.x - self.raio * 2, self.y - self.raio * 2))

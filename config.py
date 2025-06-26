@@ -2,18 +2,19 @@ from random import randint
 import pygame
 from barra import Barra
 from bola import Bola
+import sys
 import math
-with open("barrabola.txt","r") as f:
-    bola = int(f.readline())
-    barras = int(f.readline())
-largura, altura = 800, 600
+bola = int(sys.argv[1]) #pega o input do script q le o barrabola.txt
+barras = int(sys.argv[2]) #pega o input do script q le o barrabola.txt
+gera = bool(sys.argv[3])#pega o input do script q le o barrabola.txt
+largura, altura = 800, 600 #defina altura e largura
 tela = pygame.display.set_mode((largura, altura))
 clock = pygame.time.Clock()
 listabolas = [] #lista de bola
+listacor = [(0, 255, 0),(255, 255, 0),(255, 0, 255),(0, 255, 255)]
 #gerador de bolas
 def mudarcor():
-    return randint(0,255),randint(0,255),randint(0,255)
-cont = 0
+    return randint(0,255),randint(0,255),randint(0,255) #cria as cor random
 def ccw(A, B, C): #calcular sentido
     return (C[1]-A[1]) * (B[0]-A[0]) > (B[1]-A[1]) * (C[0]-A[0])
 
@@ -54,26 +55,26 @@ def gerar_barras(qtd, largura_tela, altura_tela, barras_existentes=None, max_ten
                 break
         
         if not cruzou:
-            barras.append(Barra(tela, (0, 0, 0), nova_barra[0], nova_barra[1], 10))
+            barras.append(Barra(tela, listacor[randint(0,3)], nova_barra[0], nova_barra[1], 15))
             cont += 1
     
     if tentativas >= max_tentativas:
-        print("Limite de tentativas para gerar barras atingido.")
+        pass
     
     return barras
 listabarras = gerar_barras(barras,largura,altura)
-listaclone = []
+listaclone = [] # crio um clone
 for i in listabarras:
-    x1x2 = [i.x1y1[0],i.x1y1[1] + altura]
-    x2y2 = [i.x2y2[0],i.x2y2[1] + altura]
-    b =  Barra(tela, (0, 0, 0), x1x2, x2y2, 10)
-    listaclone.append(b)
-listabarras+=listaclone
-def reset(barra):
+    x1x2 = [i.x1y1[0],i.x1y1[1] + altura] #crio um clone fora da tela para o loop funciionar
+    x2y2 = [i.x2y2[0],i.x2y2[1] + altura] #crio um clone fora da tela para o loop funcionar
+    b =  Barra(tela,i.cor, x1x2, x2y2, 10) #crio onj
+    listaclone.append(b) #add
+listabarras+=listaclone #so na lista barra para na fazer mais um for no main
+def reset(barra): #ve se inicia o loop
     if barra.x1y1[1]<0 and barra.x2y2[1]<0:
-        barra.x1y1[1]+=1200
-        barra.x2y2[1]+=1200
-def matarbola(bola):
+        barra.x1y1[1]+=altura* 2 #joga para baixo fazendo o loop funcioar
+        barra.x2y2[1]+=altura *2#joga para baixo
+def matarbola(bola): #elimino se enconstar no 0
     if bola.y -bola.raio <=0:
         listabolas.remove(bola)
 

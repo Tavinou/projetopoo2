@@ -1,7 +1,7 @@
 import subprocess
-
 arquivo = "main.py"
-n = 10  # quantas vezes quer executar
-
-for _ in range(n):
-    subprocess.run(["python3", arquivo])
+with open("barrabola.txt", "r") as f:
+    linhas = f.readlines()
+for i, linha in enumerate(linhas):
+    bola_str, barras_str, geradorligado = linha.strip().split()
+    subprocess.run(["python3", arquivo, bola_str, barras_str, geradorligado])

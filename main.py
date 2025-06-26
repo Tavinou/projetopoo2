@@ -4,15 +4,17 @@ import time
 pygame.init()
 frames = 0
 framos = 0
+conc = False
 while rodando:
-    tela.fill((255, 255,255))   
+    tela.fill((0,0,0))   
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             rodando = False
-    for i in listabolas:
+    for i in listabolas: #verifica se uma bola ta no teto
         matarbola(i)
-    if len(listabolas) ==0:
+    if len(listabolas) ==1: #verifica se alg ganhhou
         time.sleep(5)
+        conc = True
         rodando = False
     #chama todos os metodos das bolas
     for b in listabolas: # percore a lista de bolas
@@ -26,27 +28,28 @@ while rodando:
                 None
             else: # diferente passa o objeto para verificar a colisao
                  b.verifica_colisao(i)
-    for i in listabarras:
-        i.mover()
-        i.desenhar()
-        reset(i)
-    for p in listabolas:
-        if (p.y + p.raio)>=600:
+    for i in listabarras: 
+        i.mover() #mova a barra
+        reset(i) # ver se resetar
+        i.desenhar() #desenhar
+    for p in listabolas: #
+        if (p.y + p.raio)>=600: #se for maior ou = ta no chao move a barra para der efeito de queda
           p.y = 600 - p.raio
           for barra in listabarras:
               barra.mover()
+              i.desenhar()
     
-    frames += 1
-    framos +=1 
-    segundos = frames // 60
-    print(segundos)
-    """if segundos==15:
-        frames=0
-        gerabolas()"""
-    
+    segundos = frames // 60 #segundio
+    if segundos==180: #for 3 minuto encerra
+        rodando = False
+    if gera: #ver a cada 15seg gera bola ou n
+        if framos//60==15:
+            framos = 0
+            gerabolas()
+    frames+=1 #ver o tempo da simulacao
+    framos+=1 #para gerar a cade 15s
     pygame.display.flip()  
     clock.tick(60)
 pygame.quit()
-fim = framos//60
-salvar(listabarras,bola,fim) 
+salvar(listabarras,bola,segundos,conc) 
 

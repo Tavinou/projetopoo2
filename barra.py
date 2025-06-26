@@ -11,7 +11,7 @@ class Barra:
     def desenhar(self):
         pygame.draw.line(self.tela,self.cor,self.x1y1,self.x2y2,self.grosura)
     def mover(self):
-        self.x1y1[1] -= self.velocidade
-        self.x2y2[1] -= self.velocidade
+        self.x1y1[1] -= self.velocidade #sobe a barra
+        self.x2y2[1] -= self.velocidade #sobe a barra
     def __str__(self):
-        return f"{self.cor};{self.x1y1};{self.x2y2};{self.grosura}"
+        return f"{self.cor};{self.x1y1};{self.x2y2};{self.grosura}" #return em str para salvar

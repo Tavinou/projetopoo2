@@ -5,6 +5,7 @@ pygame.init()
 frames = 0
 framos = 0
 conc = False
+print(altura)
 while rodando:
     tela.fill((0,0,0))   
     for evento in pygame.event.get():
@@ -33,11 +34,11 @@ while rodando:
         reset(i) # ver se resetar
         i.desenhar() #desenhar
     for p in listabolas: #
-        if (p.y + p.raio)>=600: #se for maior ou = ta no chao move a barra para der efeito de queda
-          p.y = 600 - p.raio
+        if (p.y + p.raio)>=altura: #se for maior ou = ta no chao move a barra para der efeito de queda
+          p.y = altura - p.raio
           for barra in listabarras:
               barra.mover()
-              i.desenhar()
+              barra.desenhar()
     
     segundos = frames // 60 #segundio
     if segundos==180: #for 3 minuto encerra

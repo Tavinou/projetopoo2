@@ -3,7 +3,7 @@ from random import randint
 import math
 
 class Bola:
-    def __init__(self, x, y, raio, cor, velocidade_x, velocidade_y, tela):
+    def __init__(self, x, y, raio, cor, velocidade_x, velocidade_y, tela,largura,altura):
         self.x = x
         self.y = y
         self.raio = raio
@@ -11,6 +11,8 @@ class Bola:
         self.velocidade_x = velocidade_x
         self.velocidade_y = velocidade_y
         self.tela = tela
+        self.altura = altura
+        self.largura = largura
 
     def mudarcor(self):
         self.cor = (randint(0, 255), randint(0, 255), randint(0, 255))
@@ -21,17 +23,17 @@ class Bola:
         self.velocidade_x*=0.99  #aplica gravidade no x se nao a bola n para
         self.y += self.velocidade_y
 
-        if self.x - self.raio <= 0 or self.x + self.raio >= 800: # n deixa passar pros lado
+        if self.x - self.raio <= 0 or self.x + self.raio >= self.largura: # n deixa passar pros lado
             if self.x - self.raio < 0:
                 self.x = self.raio
-            if self.x + self.raio >= 800:
-                self.x = 800 - self.raio
+            if self.x + self.raio >= self.largura:
+                self.x = self.largura - self.raio
             self.velocidade_x *= -0.99
 
       
 
-        if self.y + self.raio > 600: # n dx passar dio chao
-            self.y = 600 - self.raio
+        if self.y + self.raio > self.altura: # n dx passar dio chao
+            self.y = self.altura - self.raio
             self.velocidade_y *= -0
         if abs(self.velocidade_x) < 0.1: #zera velcoidade evitar flik
             self.velocidade_x = 0

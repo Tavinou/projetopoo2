@@ -5,7 +5,8 @@ pygame.init()
 frames = 0
 framos = 0
 conc = False
-print(altura)
+fonte = pygame.font.SysFont('Calibri', 30)
+texto = fonte.render('Bola Ganhadora!!', True, (255, 255, 255))
 while rodando:
     tela.fill((0,0,0))   
     for evento in pygame.event.get():
@@ -14,6 +15,12 @@ while rodando:
     for i in listabolas: #verifica se uma bola ta no teto
         matarbola(i)
     if len(listabolas) ==1: #verifica se alg ganhhou
+        listabolas[0].x = largura//2
+        listabolas[0].y = altura//2
+        listabolas[0].raio = 20
+        listabolas[0].desenhar()
+        tela.blit(texto, ((largura//2)-100, (altura//2)+150))
+        pygame.display.flip() 
         time.sleep(5)
         conc = True
         rodando = False
@@ -41,7 +48,7 @@ while rodando:
               barra.desenhar()
     
     segundos = frames // 60 #segundio
-    if segundos==180: #for 3 minuto encerra
+    if segundos==120 : #for 3 minuto encerra
         rodando = False
     if gera: #ver a cada 15seg gera bola ou n
         if framos//60==15:

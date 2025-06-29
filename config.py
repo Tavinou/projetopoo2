@@ -7,7 +7,7 @@ import math
 bola = int(sys.argv[1]) #pega o input do script q le o barrabola.txt
 barras = int(sys.argv[2]) #pega o input do script q le o barrabola.txt
 gera = bool(sys.argv[3])#pega o input do script q le o barrabola.txt
-largura, altura = 1080, 600#defina altura e largura
+largura, altura = 800, 600#defina altura e largura
 tela = pygame.display.set_mode((largura, altura)) 
 clock = pygame.time.Clock()
 listabolas = [] #lista de bola

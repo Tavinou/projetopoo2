@@ -1,2 +1,6 @@
-10 25 True
-20 20 False
+12 25 False
+12 25 False
+12 25 False
+12 25 False
+12 25 False
+12 25 False
